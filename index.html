@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax code example</title>
+    <style>
+        .user {
+            display: flex;
+            background-color: lightblue;
+            padding: 10px;
+            margin-bottom: 10px;
+
+        }
+
+        .user ul li {
+            list-style: none;
+        }
+
+        #two {
+            background-color: tomato;
+            width: 8%
+        }
+
+        #button {
+            background-color: lightblue;
+            width: 125px;
+            height: 35px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> Ajax Exercise</h1>
+    <button id="button">click This button</button>
+    <br><br>
+    <div id="users"></div>
+
+    <script>
+       
+
+    </script>
+
+    <script>
+        document.getElementById('button').addEventListener('click', loadUsers);
+
+
+        for (var i = 0, len = sNumber.length; i < len; i += 1) {
+            output.push(+sNumber.charAt(i));
+        }
+
+
+
+       // Load api Users
+        function loadUsers() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://jsonplaceholder.typicode.com/users', true);
+            xhr.send();
+
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    var users = JSON.parse(this.responseText);
+
+
+                    var output = '';
+                    for (var i in users) {
+                        output +=
+
+
+                        '<div class="user">' +
+                        '<ul>' +
+
+                       
+
+                        '<li><b>Name</b>: ' + shortName(users[i].name)+ '</li>' +
+
+                         '<li><b>Name</b>: ' + users[i].name + '</li>' +
+                         '<li> <b>Email:</b> ' + users[i].email + '<b>,Phonenumber:</b>' + users[i].phone + '</li>' +
+                        
+                         '<li>  <a href="' + users[i].website + '">' + 'website' + '</a></li>' +
+
+                        '</br>' +
+
+                        '<li> <b>Address:</b> </li>' +
+                         '<li> ' + users[i].address.street + "," + users[i].address.suite + users[i].address.city + "," + users[i].address.zipcode + '</li>' +
+
+                         '</br>' +
+                         '<li> <b>Company Information:</b> </li>' +
+                         '<li> <b>name:</b> ' + users[i].company.name + '</li>' +
+                         '<li> <b>CatchPhrase:</b> ' + users[i].company.catchPhrase + '</li>' +
+                        '<li> <b>Description:</b> ' + users[i].company.bs + '</li>' +
+
+                         '</ul>' +
+                         '</div>';
+                      
+                      
+                    }
+
+                    document.getElementById('users').innerHTML = output;
+
+                }
+            }
+
+        }
+
+
+
+    </script>
+
+    <script>
+        function shortName(name) {
+            var nameArr = name.split(" ");
+            return nameArr[0].charAt(0) + "" + nameArr[1].charAt(0)
+        }
+    </script>
+
+
+
+</body>
+
+</html>
